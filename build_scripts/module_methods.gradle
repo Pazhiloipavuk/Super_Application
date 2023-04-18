@@ -1,0 +1,55 @@
+apply from: "$project.rootDir/build_scripts/external_dependencies.gradle"
+apply from: "$project.rootDir/build_scripts/android_versions_config.gradle"
+
+ext {
+    applyDagger = { module ->
+        module.dependencies {
+            implementation comGoogleDaggerDependency
+            kapt comGoogleKaptDaggerDependency
+        }
+    }
+
+    applyAndroidModuleSettings = { module ->
+        module.configure(module) {
+            apply plugin: 'com.android.library'
+
+            android {
+                compileSdkVersion androidCompileSdkVersion
+
+                defaultConfig {
+                    minSdkVersion androidMinSdkVersion
+                    targetSdkVersion androidTargetSdkVersion
+                }
+
+                buildTypes {
+                    debug {
+                        debuggable true
+                    }
+                }
+
+                compileOptions {
+                    sourceCompatibility javaVersion
+                    targetCompatibility javaVersion
+                }
+            }
+        }
+    }
+
+    applyKotlin = { module ->
+        module.configure(module) {
+            apply plugin: 'kotlin-android'
+            apply plugin: 'kotlin-kapt'
+            apply plugin: 'org.gradle.android.cache-fix'
+
+            android {
+                kotlinOptions {
+                    jvmTarget = jvmTargetVersion
+                }
+            }
+        }
+
+        module.dependencies {
+            implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlin_version}"
+        }
+    }
+}
