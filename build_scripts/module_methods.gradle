@@ -1,4 +1,4 @@
-apply from: "$project.rootDir/build_scripts/external_dependencies.gradle"
+apply from: "$project.rootDir/build_scripts/dependencies.gradle"
 apply from: "$project.rootDir/build_scripts/android_versions_config.gradle"
 
 ext {
@@ -9,11 +9,17 @@ ext {
         }
     }
 
-    applyAndroidModuleSettings = { module ->
+    applyAndroidModuleSettings = { module, packageName = null ->
         module.configure(module) {
             apply plugin: 'com.android.library'
 
             android {
+                if (packageName == null) {
+                    namespace "com.example.superapplication.${module.name.replace("_", "")}"
+                } else {
+                    namespace packageName
+                }
+
                 compileSdkVersion androidCompileSdkVersion
 
                 defaultConfig {
@@ -49,7 +55,7 @@ ext {
         }
 
         module.dependencies {
-            implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlin_version}"
+            implementation kotlinReflectionDependency
         }
     }
 }

@@ -2,14 +2,16 @@ ext {
     javaVersion = JavaVersion.VERSION_11
     jvmTargetVersion = '11'
 
-    comGoogleDaggerVersion = '2.45.0'
+    comGoogleDaggerVersion = '2.44.2'
     androidxCoreKtxVersion = '1.10.0'
-    androidxAppcompatDependency = '1.6.1'
+    androidxAppcompatVersion = '1.6.1'
     comGoogleAndroidMaterialVersion = '1.8.0'
+    kotlinReflectionVersion = '1.8.0'
 
     comGoogleDaggerDependency = "com.google.dagger:dagger:$comGoogleDaggerVersion"
     comGoogleKaptDaggerDependency = "com.google.dagger:dagger-compiler:$comGoogleDaggerVersion"
     androidxCoreKtxDependency = "androidx.core:core-ktx:$androidxCoreKtxVersion"
     androidxAppcompatDependency = "androidx.appcompat:appcompat:$androidxAppcompatVersion"
     comGoogleAndroidMaterialDependency = "com.google.android.material:material:$comGoogleAndroidMaterialVersion"
+    kotlinReflectionDependency = "org.jetbrains.kotlin:kotlin-reflect:$kotlinReflectionVersion"
 }
