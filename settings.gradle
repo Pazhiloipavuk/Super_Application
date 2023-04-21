@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "Super Application"
 include ':app'
 include ':splash_screen'
+include ':main_screen'

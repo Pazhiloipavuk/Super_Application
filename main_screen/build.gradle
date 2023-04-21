@@ -1,0 +1,12 @@
+apply from: "$project.rootDir/build_scripts/module_methods.gradle"
+
+applyAndroidModuleSettings(this)
+applyKotlin(this)
+applyDagger(this)
+
+dependencies {
+
+    implementation androidxCoreKtxDependency
+    implementation androidxAppcompatDependency
+    implementation comGoogleAndroidMaterialDependency
+}
